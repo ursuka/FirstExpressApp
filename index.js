@@ -30,11 +30,21 @@ app.get("/cats", (req, res) => {
 app.post("/cats", (req, res) => {
     res.send("Request was posted on /cats")
 })
+
 app.get("/dogs", (req, res) => {
     console.log("dog request!");
     res.send("bark!")
+
 })
 
+
+app.get("/search", (req, res) => {
+    const { q } = req.query;
+    if(!q){
+        res.send("<h1>Nothing found if nothing searched</h1>")
+    }
+    res.send(`<h1>Search results for: ${q}</h1>`)
+})
 app.get("*", (req, res) => {
     res.send("Undentified request!")
 })
